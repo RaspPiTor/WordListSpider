@@ -1,11 +1,14 @@
 '''Spider that generates word lists'''
 from urllib.parse import urljoin, urlparse
-from RobotParser import RobotParser
+import argparse
 import mimetypes
+
+from RobotParser import RobotParser
 import requests
-import string
 import bs4
 mimetypes.init()
+
+
 class WordListSpider(object):
     def __init__(self, url, useragent='WordListSpider'):
         self.host = urlparse(url).netloc
@@ -39,12 +42,15 @@ class WordListSpider(object):
             self.wordlist.update(text)
         except Exception as error:
             print(error, error.with_traceback(None))
+
     def run(self):
         try:
             while True:
                 self.next()
         except IndexError:
             pass
+
+
 def main():
     '''Parse commandline arguments and run program'''
     parser = argparse.ArgumentParser()
