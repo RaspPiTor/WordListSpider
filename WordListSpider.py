@@ -59,7 +59,7 @@ def main():
                         required=True)
     parser.add_argument('-o', '--output',
                         help='Output file, defaults to out.txt',
-                        required=True, default='out.txt')
+                        default='out.txt')
     args = parser.parse_args()
     wls = WordListSpider(args.url)
     wls.run()
